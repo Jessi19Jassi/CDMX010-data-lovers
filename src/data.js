@@ -1,31 +1,22 @@
-// estas funciones son de ejemplo
-//import data from './data/pokemon/pokemon.js';
-//import rickandmorty from './data/rickandmorty/rickandmorty.js';
-//import { data } from './data.js';
-//export const rickandmorty = data.results;
+// export const filterByGender = (personajes, gender) => {
+//   if(gender === 'Female'){
+//     //function filterFemale(personajes, gender) {
+//       const filterForFemale= personajes.filter(element=> element.gender === gender);
+//       return filterForFemale;
+//   }
 
-//export const pokemons = data.pokemon;
+//   else if(gender === 'Male'){
+//     const filterForMale= personajes.filter(element=> element.gender === gender);
+//     return filterForMale;
+//   }
 
-export const example = () => {
-  return 'example';
-};
- 
-export const anotherExample = () => {
-  return 'OMG';
-};
+//   else if(gender === 'unknown'){
+//     const filterForUnkwon= personajes.filter(element=> element.gender===gender);
+//     return filterForUnkwon;
+//   }
+// } 
 
-//export const printData = (personajes) => {
- // const printPersonajes = 
-//};
-
-// export function filterFemale(personajes, gender) {
-
-//   const filterForFemale= personajes.filter(allData=> allData.gender===gender);
-  
-//   return filterForFemale;
-// };
-
-export function filterFemale(personajes, gender) {
+function filterFemale(personajes, gender) {
   
   const filterForFemale= personajes.filter(element=> element.gender === gender);
   return filterForFemale;
@@ -66,12 +57,31 @@ export function filterSunknown(personajes, status) {
   return filterUnknown;
 };
 
-export function orderAsc(personajes, name) {
+export const orderData = (data, sortBy, sortOrder) =>{
+  if(sortBy === 'name' && sortOrder === 'sortAZ'){
+      const sortAZ = data.sort((a,b) => {
+      if (a.name < b.name) return -1;
+      if (b.name > b.name) return 1;
+      return 0;
+    });
+    return sortAZ;
+} 
+  else if (sortBy === 'name' && sortOrder === 'sortZA'){
+    const sortZA = data.sort((a,b) => {
+      if (a.name > b.name) return -1;
+      if (b.name < b.name) return 1;
+      return 0;
+    });
+  return sortZA;
+}
+}
 
-  const orderName = personajes.sort((a,b) => a.name.localeCompare(b.name));
-  return orderName;
+// export function orderAsc(personajes, name) {
 
-};
+//   const orderName = personajes.sort((a,b) => a.name.localeCompare(b.name));
+//   return orderName;
+
+// };
 
 // export function orderDes(personajes, name) {
 
@@ -80,6 +90,4 @@ export function orderAsc(personajes, name) {
 
 // };
 
-//const orderName = personajes.sort((a,b) => a.name > b.name);
 
-//export default data;

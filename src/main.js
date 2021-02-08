@@ -1,41 +1,63 @@
-import {filterFemale, filterMale, filterUnknown, filterAlive, filterDead, filterSunknown, orderAsc } from './data.js';
+import {filterByGender,  filterAlive, filterDead, filterSunknown, orderData } from './data.js';
 import rickandmorty from './data/rickandmorty/rickandmorty.js';
 
 let personajes = rickandmorty.results;
 let filGender= document.getElementById('filGender');
 let filStatus= document.getElementById('filStatus');
+let female = document.getElementById('female');
+let male = document.getElementById('male');
+let unknown = document.getElementById('unknown');
 let boton = document.getElementById('hamburguer');
 let buttonAll = document.getElementById('showAll');
-let orderA = document.getElementById('order');
 
 //**Impresión de Género**
+
 document.addEventListener('DOMContentLoaded',()=>{
     filGender.addEventListener('change',(e)=>{
-        createCards(filterFemale(personajes,e.target.value ));
-        createCards(filterMale(personajes,e.target.value ));
-        createCards(filterUnknown(personajes,e.target.value ));
-        console.log("Estoy escuchando el", e.target.value)
+        const user = e.target.value;
+        const nuevo = filterByGender(personajes, 'gender', user);
+        createCards(nuevo);
+
+        // if(user === 'Female'){
+        //     const fema = filterFemale(personajes, 'Female', user);
+        //     createCards(fema);
+        // }
+        // else if(user === 'Male'){
+        //     const mal = filterMale(personajes, 'Male', user);
+        //     createCards(mal); 
+        // }
+        // else if(user === 'unknown'){
+        //     const unk = filterUnknown(personajes, 'unknown', user);
+        //     createCards(unk); 
+        // }
+        // else{
+        //     console.log('Nada');
+        // }
+console.log("Estoy escuchando el", e.target.value)
+
     })
 });
 
 //**Impresión de Filtro de Estado**
 document.addEventListener('DOMContentLoaded',()=>{
     filStatus.addEventListener('change',(e)=>{
-        createCards(filterAlive(personajes,e.target.value ));
-        createCards(filterDead(personajes,e.target.value ));
-        createCards(filterSunknown(personajes,e.target.value ));
+       const userStatus = e.target.value; 
+       const alive = filterAlive(personajes, 'Alive', userStatus);
+        createCards(alive);
+
         console.log("Estoy escuchando el", e.target.value)
     })
 });
-console.log(filterFemale(personajes, 'Female'));
+
 
 //**Impresión de ordenamiento**
-document.addEventListener("DOMContentLoaded",()=>{
-    orderA.addEventListener('click', (e)=>{
-        createCards(orderAsc(personajes,e.target.value ));
-        console.log("Estoy escuchando el Ordenamiento", e.target.value)
-    })
-});
+
+const order = document.getElementById('order');
+    order.addEventListener ('change', (event) => {
+    const sortOrder = event.target.value;
+    const orderedData = orderData(personajes, 'name', sortOrder)
+    createCards(orderedData);
+})
 
 //**Tarjetas**
 const createCards = data => {
@@ -54,18 +76,21 @@ const createCards = data => {
             </div> 
             `;
         }).join(" ");
-        document.getElementById("area").innerHTML = showAll;
+       document.getElementById("area").innerHTML = showAll;
 }
+
  
+buttonAll.addEventListener("click", ()=>{
+    createCards(personajes);
+    console.log("Regreso todos los personajes");
+});
+
         document.getElementById('next').addEventListener("click", function(){
             displayOne.style.display = 'none'; //Ocultar
             displayTwo.style.display = 'block'; //Mostrar
         
             createCards(personajes);
 
-            buttonAll.addEventListener("click", ()=>{
-                createCards(personajes);
-            })
 
         // **Función del menú hamburguesa**   
 
@@ -86,34 +111,5 @@ const createCards = data => {
         boton.addEventListener("click", showMenu);
 
 
-    // //     console.log(genderUser);
-    /*
-    console.log(filterFemale(personajes, 'Female'));
-    console.log(filterMale(personajes, 'Male'));
-    console.log(filterUnknown(personajes, 'unknown'));
-    console.log(filterAlive(personajes, 'Alive'));
-    console.log(filterDead(personajes, 'Dead'));
-    console.log(filterSunknown(personajes, 'unknown'));
-    console.log(orderAsc(personajes, 'name'));
-    */
-   // console.log(orderDes(personajes, 'name'));
+
      });
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
