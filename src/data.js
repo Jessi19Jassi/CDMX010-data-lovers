@@ -16,7 +16,7 @@
 //   }
 // } 
 
-function filterFemale(personajes, gender) {
+export function filterFemale(personajes, gender) {
   
   const filterForFemale= personajes.filter(element=> element.gender === gender);
   return filterForFemale;

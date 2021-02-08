@@ -1,4 +1,4 @@
-import {filterByGender,  filterAlive, filterDead, filterSunknown, orderData } from './data.js';
+import {filterFemale, filterAlive, filterDead, filterSunknown, orderData } from './data.js';
 import rickandmorty from './data/rickandmorty/rickandmorty.js';
 
 let personajes = rickandmorty.results;
@@ -13,41 +13,25 @@ let buttonAll = document.getElementById('showAll');
 //**Impresión de Género**
 
 document.addEventListener('DOMContentLoaded',()=>{
+    filStatus.addEventListener('change',(e)=>{
+        const userStatus = e.target.value; 
+        const alive = filterAlive(personajes, 'Alive', userStatus);
+         createCards(alive);
+ 
+         console.log("Estoy escuchando el", e.target.value)
+     })
     filGender.addEventListener('change',(e)=>{
+
         const user = e.target.value;
-        const nuevo = filterByGender(personajes, 'gender', user);
+        console.log("Estoy escuchando el",user)
+        const nuevo = filterFemale(personajes, 'Female', user);
         createCards(nuevo);
 
-        // if(user === 'Female'){
-        //     const fema = filterFemale(personajes, 'Female', user);
-        //     createCards(fema);
-        // }
-        // else if(user === 'Male'){
-        //     const mal = filterMale(personajes, 'Male', user);
-        //     createCards(mal); 
-        // }
-        // else if(user === 'unknown'){
-        //     const unk = filterUnknown(personajes, 'unknown', user);
-        //     createCards(unk); 
-        // }
-        // else{
-        //     console.log('Nada');
-        // }
-console.log("Estoy escuchando el", e.target.value)
 
     })
 });
 
-//**Impresión de Filtro de Estado**
-document.addEventListener('DOMContentLoaded',()=>{
-    filStatus.addEventListener('change',(e)=>{
-       const userStatus = e.target.value; 
-       const alive = filterAlive(personajes, 'Alive', userStatus);
-        createCards(alive);
 
-        console.log("Estoy escuchando el", e.target.value)
-    })
-});
 
 
 //**Impresión de ordenamiento**
