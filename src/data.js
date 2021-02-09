@@ -1,30 +1,54 @@
-// estas funciones son de ejemplo
-//import data from './data/pokemon/pokemon.js';
-//import rickandmorty from './data/rickandmorty/rickandmorty.js';
-//import { data } from './data.js';
-//export const rickandmorty = data.results;
+export function filterByGender (personajes, gender) {
+  if(gender === 'Female'){
+    //function filterFemale(personajes, gender) {
+      const filterByFemale= personajes.filter(element=> element.gender === gender);
+      return filterByFemale;
+  }
 
-//export const pokemons = data.pokemon;
+  else if(gender === 'Male'){
+    const filterByMale= personajes.filter(element=> element.gender === gender);
+    return filterByMale;
+  }
 
-export const example = () => {
-  return 'example';
-};
- 
-export const anotherExample = () => {
-  return 'OMG';
-};
+  else if(gender === 'unknown'){
+    const filterByUnkwonG= personajes.filter(element=> element.gender===gender);
+    return filterByUnkwonG;
+  }
+} 
 
-//export const printData = (personajes) => {
- // const printPersonajes = 
-//};
+export function filterByStatus(personajes, status){
+  if(status === 'Alive'){
+      const filterByAlive= personajes.filter(element=> element.status === status);
+      return filterByAlive;
+  }
 
+  else if(status === 'Dead'){
+    const filterByDead= personajes.filter(element=> element.status === status);
+    return filterByDead;
+  }
 
-export const filterByType = (type) => {
-  const filteredPokemons = pokemons.filter(function(pokemon){
-    return type === pokemon.type
-  });
+  else if(status === 'unknown'){
+    const filterByUnkwonS= personajes.filter(element=> element.status === status);
+    return filterByUnkwonS;
+  }
+} 
 
-  return  filteredPokemons;
+export const orderData = (data, sortBy, sortOrder) =>{
+  if(sortBy === 'name' && sortOrder === 'sortAZ'){
+      const sortAZ = data.sort((a,b) => {
+      if (a.name < b.name) return -1;
+      if (b.name > b.name) return 1;
+      return 0;
+    });
+    return sortAZ;
+} 
+  else if (sortBy === 'name' && sortOrder === 'sortZA'){
+    const sortZA = data.sort((a,b) => {
+      if (a.name > b.name) return -1;
+      if (b.name < b.name) return 1;
+      return 0;
+    });
+  return sortZA;
+}
 }
 
-export default data;

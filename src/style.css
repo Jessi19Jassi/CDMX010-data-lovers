@@ -5,58 +5,70 @@
 }
 
 body{
-  /* font-family: 'Roboto', 'Sans serif';*/
    box-sizing: border-box;
    justify-content: center;
 }
 
 #displayOne{
-  /*display: flex;*/
   width: 100%; /*ancho*/
   height: 100vh;
   display: inline-block;
-  /*background: linear-gradient(to right, #005C98, #505BDA);*/
-  /*background-image: url("inicio.jpg");*/
   background-size: 100%;
-  background-repeat: repeat;
   background-attachment: fixed;
-  animation-name: anim;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
+  background-size: cover;
+  background:#000 url(http://1.bp.blogspot.com/-q7NYia_DjQI/U4t7_J4gwwI/AAAAAAAAMKo/nru4YxfjK6I/s1600/estrellas.png) repeat top center;
+  background-attachment: fixed, scroll;
 }
 
-@keyframes anim{
-  0% {background-color: #00132d;} 
- 25% {background-color: #00193b;} 
- 50% {background-color: #001e45;} 
- 75% {background-color: #002657;} 
-100% {background-color: #002d67;} 
+.stars{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%; 
+  display:block;
+  background:transparent url(http://3.bp.blogspot.com/-FwB8aSiMBmI/U4t9MkimRrI/AAAAAAAAMK0/FAlqX8ZFyu8/s1600/twinkling.png) repeat top center;
+  z-index:-2;
+  -moz-animation:move-twink-back 100s linear infinite;
+  -ms-animation:move-twink-back 100s linear infinite;
+  -o-animation:move-twink-back 100s linear infinite;
+  -webkit-animation:move-twink-back 100s linear infinite;
+  animation:move-twink-back 100s linear infinite;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: repeat;
 }
 
-/*.typing{
-  border-right: .15em solid orange;
-  font-family: "Courier";
-  font-size: 40px;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 7.3em;
-  -webkit-animation: type 2s steps(80, end);
-  animation: type 2s steps(80, end);
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  text-align: center;
-}*/
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
 
-.typing  {
-  font-family: 'Monaco';
+
+.typing  { /*h1*/
   text-align: center;
-  font-size: 60px;
+  font-size: 100px;
   font-weight: 300;
-  color: white;
   border-right: .15em solid transparent;
   white-space: nowrap;
   overflow: hidden;
-  width: 31em;
+  width: 15em;
+  text-align: center;
+  padding: 250px 0 150px 0px;
   -webkit-animation: type 5s steps(40, end), blink .5s step-end infinite alternate;
   animation: type 5s steps(40, end), blink .5s step-end infinite alternate;
   -webkit-animation-fill-mode: forwards;
@@ -102,100 +114,7 @@ body{
 }
 }
 
-/*h1{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  font-size: 40px;
-  font-weight: 300;
-  color: white;
-}*/
-
-.description{
-  text-align: center;
-  padding: 80px;
-  /*margin-left:18%;
-  margin-right:18px;*/
-
-  font-size:40px;
-  font-weight: 400;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-/*h3{
-  text-align:center;
-  padding:10px;
-  margin-left:18%;
-  margin-right: 18%;
-  margin-top:2%;
-  margin-bottom:2%;
-  font-size: 25px;
-  font-weight:400;
-  color:white;
-}*/
-
-#displayTwo{
-  /*display: flex;*/
-  width: 100%; /*ancho*/
-  height: 100vh;
-  display: inline-block;
-  /*background: linear-gradient(to right, #005C98, #505BDA);*/
-  background-color: white; 
-  background-size: 100%;
- /* background-repeat: no-repeat;*/
-  /*background: cover;*/
-  background-attachment: fixed;
-}
-
-
-
-/*.description{
-  text-align: justify;
-  padding: 10px;
-  margin-left:18%;
-  margin-right: 18px;
-  font-size:25px;
-  font-weight:400;
-  color: white;
-}*/
-
-.respmenu a { 
-  color: inherit;
-  text-decoration: none;
-  display: block;
-  padding: 10px 20px;
-  border-bottom: 2px solid #456789;
-  max-width: 200px;
-  background: #234567;
-  font-variant: small-caps;
-  text-shadow: 1px 1px black;
-}
-
-footer {
-  position: relative;
-  /* Altura total del footer en px con valor negativo */
-  margin-top: -50px;
-  /* Altura del footer en px. Se han restado los 5px del margen
-     superior mas los 5px del margen inferior
-  */
-  height: 40px;
-  padding:5px 0px;
-  clear: both;
-  background: transparent;
-  text-align: center;
-  color: black;
-}
-
-/* Esta clase define la anchura del contenido y la posicion centrada 
- El contenido queda centrado y limitado, pero la cabecera y el pie
- llegan hasta los limites del navegador.
-*/
-.define {
-  width:960px;
-  margin:0 auto;
-}
-
-.btn-siguiente{
+.btn-siguiente{ /*Botón de la página siguiente*/
   background: #eb94d0;
   background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
   background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
@@ -240,74 +159,107 @@ text-decoration: none;
   }
 }
 
-/*#cards{
-  display: flex;
-  justify-content: center;
-  /*background-color: gray;
-}*/
+
+#displayTwo{
+  width: 100%; /*ancho*/
+  height: 100vh;
+  display: inline-block;
+  background-color: white; 
+  background-size: 100%;
+  background-attachment: fixed;
+  background:#000 url(http://1.bp.blogspot.com/-q7NYia_DjQI/U4t7_J4gwwI/AAAAAAAAMKo/nru4YxfjK6I/s1600/estrellas.png) repeat top center;
+}
+
+.stars{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+  background:transparent url(http://3.bp.blogspot.com/-FwB8aSiMBmI/U4t9MkimRrI/AAAAAAAAMK0/FAlqX8ZFyu8/s1600/twinkling.png) repeat top center;
+  z-index:-2;
+  -moz-animation:move-twink-back 100s linear infinite;
+  -ms-animation:move-twink-back 100s linear infinite;
+  -o-animation:move-twink-back 100s linear infinite;
+  -webkit-animation:move-twink-back 100s linear infinite;
+  animation:move-twink-back 100s linear infinite;
+}
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
 
 header{
-  height: 50px;
-  background-color: aqua;
+  width: 100%;
+  background:#E1EB0D; /*   #1ABC9C*/
+  height: 70px;
+  position:fixed;
+  top:0;
 }
 
 
 header #hamburguer{
-  width:80px;
-  height: 40px;
-  position: fixed;
+width:80px;
+height: 40px;
+position: fixed;
 }
 
 nav{
-  width: 60%; /*ancho*/
-  margin-left: 20%;
-  text-align: center;
+width: 60%; /*ancho*/
+margin-left: 20%;
+text-align: center;
 }
 
 ul{
-  list-style: none; /*quitar estilo de listas no ordenadas (puntos)*/
-}
-
-li:hover{
-  background-color: lightblue; /*cuando el mouse pasa por los botones*/
-}
-
-a{
-  text-decoration: none; /*quitar estilo de las opciones*/
-}
-
-a:hover{
-  color: white; /*cambia color la letra cuando se pasa el mouse*/
+list-style: none; /*quitar estilo de listas no ordenadas (puntos)*/
 }
 
 .enabled-menu{ /*se muestra menú en vertical*/
-  display: block; 
+display: block; 
 }
 
 .disabled-menu{ /*se oculta menú*/
-  display: none;
+display: none;
 }
-
 
 #area{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 10vh;
 }
 
 .card img{
-  width: 80%;
+  width: 70%;
+  border: 5px solid black;
+  border-radius: 40%;
 }
 
 .card{
-  width: 40%;
+  width: 30%;
   margin: 30px 30px 30px 30px;
   background: #fff;
   padding: 25px 25px 25px 25px;
   text-align: center;
   box-shadow: 1px 1px 11px 0px #00000030;
-  background-color: purple;
-  width: 326px;
+  background-color: rgba(73, 248, 11, 0.87);
+  width: 200px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -315,11 +267,28 @@ a:hover{
 
 h4{
   font-size: 14px;
-  color: black;
+  color: #0E3D46;
+  font-family: 'Yusei Magic', sans-serif;
+}
+
+p{
+  font-weight: bold;
+  font-family: 'Yusei Magic', sans-serif;
 }
 
 
+footer {
+  position: relative;
+  margin-top: -50px;
+  height: 40px;
+  padding:5px 0px;
+  clear: both;
+  background: #E1EB0D;
+  text-align: center;
+  color: black;
+}
 
-
-
-
+.define {
+  width:960px;
+  margin:0 auto;
+}

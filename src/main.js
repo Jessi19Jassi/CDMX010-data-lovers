@@ -1,37 +1,104 @@
-//import { rickandmorty } from './data.js';
-// import data from './data/lol/lol.js';
-//import data from './data/pokemon/pokemon.js';
+import {filterByGender, filterByStatus, orderData } from './data.js';
 import rickandmorty from './data/rickandmorty/rickandmorty.js';
 
- 
 let personajes = rickandmorty.results;
+let filGender= document.getElementById('filGender');
+let filStatus= document.getElementById('filStatus');
+let boton = document.getElementById('hamburguer');
+let buttonAll = document.getElementById('showAll');
+const order = document.getElementById('order');
 
-document.getElementById('next').addEventListener("click", function(){
-    displayOne.style.display='none'; //ocultar
-    displayTwo.style.display='block'; //mostrar
+
+document.addEventListener('DOMContentLoaded',()=>{
+    
+    filStatus.addEventListener('change',(e)=>{
+        const userStatus = e.target.value;
+
+            console.log("Estoy escuchando el", userStatus)
+    
+            if(userStatus === "ali"){
+                const statusA = filterByStatus(personajes, 'Alive', userStatus);
+                createCards(statusA);
+            }
+            else if(userStatus === "dea"){
+                const statusD = filterByStatus(personajes, 'Dead', userStatus);
+                createCards(statusD); 
+            }
+            else if(userStatus === "uns"){
+                const statusU = filterByStatus(personajes, 'unknown', userStatus);
+                createCards(statusU); 
+            }
+            else{
+                console.log('Nada');
+            } 
+
+ 
+         console.log("Estoy escuchando el", e.target.value)
+     })
+
+     filGender.addEventListener('change',(e)=>{
+
+        const user = e.target.value;
+        console.log("Estoy escuchando el",user)
+
+        if(user === "fem"){
+            const genderF = filterByGender(personajes, 'Female', user);
+            createCards(genderF);
+        }
+        else if(user === "mal"){
+            const genderM = filterByGender(personajes, 'Male', user);
+            createCards(genderM); 
+        }
+        else if(user === "unk"){
+            const genderU = filterByGender(personajes, 'unknown', user);
+            createCards(genderU); 
+        }
+        else{
+            console.log('Nada');
+        }
+
+        buttonAll.addEventListener("click", ()=>{
+        createCards(personajes);
+        console.log("Regreso todos los personajes");
+        });
+    })
+
+        order.addEventListener ('change', (event) => {
+            const sortOrder = event.target.value;
+            const orderedData = orderData(personajes, 'name', sortOrder)
+            createCards(orderedData);
+        })
+
 });
 
-    document.getElementById("next").addEventListener("click", function(){
+//**Tarjetas**
+const createCards = data => {
+    let showAll = data.map((element) =>{
+        return  `
+            <div class="card">
+                <img src="${element.image}"/> 
+                <div>
+                    <h4> Name: ${element.name}</h4>
+                    <p class="status"> Status: ${element.status}</p>
+                    <p class="gender"> Gender: ${element.gender}</p>
+                    <p class="origin"> Origin: ${element.origin.name}</p>
+                    <p> Species: ${element.species}</p>
+                    <p> Type: ${element.type}</p>
+                </div>
+            </div> 
+            `;
+        }).join(" ");
+       document.getElementById("area").innerHTML = showAll;
+}
 
-        let showAll = personajes.map((element) =>{
-            return  `
-                <div class="card">
-                    <img src="${element.image}"/> 
-                    <div>
-                        <h4> Name: ${element.name}</h4>
-                        <p class="status"> Status: ${element.status}</p>
-                        <p class="gender"> Gender: ${element.gender}</p>
-                        <p class="origin"> Origin: ${element.origin.name}</p>
-                        <p> Species: ${element.species}</p>
-                        <p> Type: ${element.type}</p>
-                    </div>
-                </div> 
-                `;
-            }).join(" ");
-            document.getElementById("area").innerHTML = showAll;
+        document.getElementById('next').addEventListener("click", function(){
+            displayOne.style.display = 'none'; //Ocultar
+            displayTwo.style.display = 'block'; //Mostrar
+        
+            createCards(personajes);
+
 
         // **Función del menú hamburguesa**   
-        let boton = document.getElementById('hamburguer');
 
         function showMenu(){
              let menu = document.getElementById('options-menu');
@@ -48,101 +115,4 @@ document.getElementById('next').addEventListener("click", function(){
         }
 
         boton.addEventListener("click", showMenu);
-
-
-        // **Función para el filtrado
-
-        const buttonFilter = document.getElementById("select_filter");
-        buttonFilter.addEventListener("change", function genderFiltered(){
-        let genderUser = document.getElementById("filGender").value;
-        console.log(genderUser);
-
-    
-            let filterGender = personajes.filter(f => f.gender == genderUser)
-            let genderFiltered = filterGender.map((element)=>{
-
-                return  `
-                <div class="card">
-                    <img src="${element.image}"/> 
-                    <div>
-                        <h4> Name: ${element.name}</h4>
-                        <p class="status"> Status: ${element.status}</p>
-                        <p class="gender"> Gender: ${element.gender}</p>
-                        <p class="origin"> Origin: ${element.origin.name}</p>
-                        <p> Species: ${element.species}</p>
-                        <p> Type: ${element.type}</p>
-                    </div>
-                </div> 
-                `
-            }).join(" ");
-            document.getElementById("area").innerHTML = genderFiltered;
-        });
-
-       
-    });
-
-
-    // **Imprimir personajes con detalle por medio de fetch**
-
-    //const url = 'https://rickandmortyapi.com/api/character';
-    //const result = document.getElementById('area');
-
-        //fetch(url)
-        //.then(response => response.json()) // Then: Promesas a cumplir
-        //.then(data => {
-            
-          //  let personajes = data.results;
-            //console.log(personajes)
-            //imprimirData(personajes) //mandando llamar la función
-        //});
-
-          //  const imprimirData = (datos) =>{  //Parametro
-            //    datos.forEach((element) => { //Argumento
-              //      let tarjetas = `
-                //    <section class="card" id="cards">
-                  //  <div class="card">
-                    //<img src="${element.image}"/> 
-                    //<h2> ${element.name}</h2>
-                    //<p class="status"> ${element.status}</p>
-                    //<p class="gender"> ${element.gender}</p>
-                    //<p> ${element.species}</p>
-                    //<p> ${element.type}</p>
-                    //</div>
-                    //</section>
-                    //`;
-                    //result.insertAdjacentHTML("beforeend", tarjetas);
-                //});
-            //};
-
-
-    //});
-
-
-//console.log(example, data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
+     });

@@ -7,56 +7,65 @@
     <link rel="stylesheet" href="fontello.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel = "preconnect" href = "https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 
   </head>
   <body>
     <div id="root"></div>
     <script src="main.js" type="module"></script>
 
-      <div id="displayOne" class="displayOne">
+      <div id="displayOne" class="stars">
           <div>
             <h1 class="typing"><strong>Welcome to Rick & Morty Universe</strong></h1>
-            <p class="description">Esta página esta dirigida a todo tipo de usuarios que desee conocer más acerca del "Universo de Rick y Morty"
-            se cuenta con tarjetas que muestran las características de cada personaje.</p>
-
-           <!-- <h1>Welcome to Rick and Morty Universe</h1>
-            <p class="description">La principal funcionalidad de esta app web, es poder introducir anuevos usuarios al mundo de Rick y Morty, llevandolos a conocer a los personajes a través de distintas categorías</p>-->
-           <center> <button value="inicio" style="cursor:pointer" id="next" class="btn-siguiente">Conoce más</button></center>
+             <center> <button value="inicio" style="cursor:pointer" id="next" class="btn-siguiente">Go!</button></center>
 
           </div>
       </div>
 
-      <div id="displayTwo" style="display:none">
+      <div class="stars" id="displayTwo" style="display:none">
+        <div id="area"></div>
         <header>
-          <button id="hamburguer">
+          <button id="hamburguer" style="cursor:pointer">
             <hr> 
             <hr>
             <hr>
           </button>
           <nav id="options-menu" class="disabled-menu">
             <ul> 
-              <!--<li><a href="#">Filter</a></li>-->
-              <select class="select-style" id="select_filter">
-                <option value="">Filter</option>
-                <option class="select-o" value="Female" id="filGender">Female</option>
-                <option class="select-o" value="Male" id="filGenderM">Male</option>
-                <option class="select-o" value="Origin">Origin</option>
+              <select  name="gender" class="select-style" id="filGender">
+                <option value="">Gender</option>
+                <option name="female"  value="fem" id="female" >Female</option>
+                <option  name="male"  value="mal" id="male" >Male</option>
+                <option  name="unknown" value="unk" id="unknown">Unknown</option>
+              </select>          
+              <select name="Status" class="select-style" id="filStatus">
+                <option value="">Status</option>
+                <option name="alive" value="ali" id="alive">Alive</option>
+                <option name="dead" value="dea" id="dead" >Dead</option>
+                <option  name="sunknown" value="uns" id="sunknown">Unknown</option>
               </select>          
             </ul>
-              <li><a href="#">Order</a></li>
-              <li><a href="#">Opcion 3</a></li>
-            </ul>
+            <select name="order" id="order" class="select-order">
+              <li><option value="">SORT BY </option></li>
+              <li><option value="sortAZ">A-Z </option></li>
+              <li><option value="sortZA"> Z-A</option></li>
+            </select>
+            <button id="showAll" onclick="">Show all</button>
+            <!-- <button id="order">Order (A-Z)</button> -->
+              <!--<li><a href="#">Order</a></li>
+              <li><a href="#">Opcion 3</a></li>-->
           </nav>
         </header>
-          <section id="area"></section>
           
+        <footer>
+          <div class='define'>
+              <p>Data Lovers 2021</p>
+          </div>
+        </footer>
       </div>
 
-      <footer>
-        <div class='define'>
-            <p>Data Lovers 2021</p>
-        </div>
-      </footer>
+
 
   </body>
 </html>
