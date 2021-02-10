@@ -1,4 +1,4 @@
-import { filterByGender, filterAlive, filterDead, filterSunknown, orderData } from '../src/data.js';
+import { filterByGender, filterByStatus, orderData} from '../src/data.js';
 import rickandmorty from '../src/data/rickandmorty/rickandmorty.js';
 
 let personajes = rickandmorty.results;
@@ -8,7 +8,7 @@ describe('filterByGender', () => {
     expect(typeof filterByGender).toBe('function');
   });
 
-  it('returns female charecters when selecting filtering by female gender', () => {
+  it('returns female characters when selecting filtering by female gender', () => {
     const filterByFemale = filterByGender(personajes, 'Female')
     expect(filterByFemale.length).toBe(73);
   });
@@ -25,51 +25,40 @@ describe('filterByGender', () => {
 
 });
 
-describe('filterAlive', () => {
-  it.skip('is a function', () => {
-    expect(typeof filterAlive).toBe('function');
+describe('filterByStatus', () => {
+  it('is a function', () => {
+    expect(typeof filterByStatus).toBe('function');
   });
 
-  it.skip('returns unknown charecters when selecting filtering by unknown gender', () => {
-    const filterForAlive = filterAlive('Alive')
-    expect(filterForAlive.length).toBe(281);
+  it('returns alive characters when selecting filtering by alive status', () => {
+    const filterByAlive = filterByStatus(personajes, 'Alive')
+    expect(filterByAlive.length).toBe(281);
+  });
+
+  it('returns dead characters when selecting filtering by dead status', () => {
+    const filterByDead = filterByStatus(personajes, 'Dead')
+    expect(filterByDead.length).toBe(147);
+  });
+ 
+  it('returns unknown characters when selecting filtering by unknown status', () => {
+    const filterByUnknownS = filterByStatus(personajes, 'unknown')
+    expect(filterByUnknownS.length).toBe(65);
   });
 });
 
-describe('filterDead', () => {
-  it.skip('is a function', () => {
-    expect(typeof filterDead).toBe('function');
-  });
-
-  it.skip('returns unknown charecters when selecting filtering by unknown gender', () => {
-    const filterForDead = filterDead('Dead')
-    expect(filterForDead.length).toBe(147);
-  });
-});
-
-describe('filterSunknown', () => {
-  it.skip('is a function', () => {
-    expect(typeof filterSunknown).toBe('function');
-  });
-
-  it.skip('returns unknown charecters when selecting filtering by unknown gender', () => {
-    const filterForSunknown = filterSunknown('unknown')
-    expect(filterForSunknown.length).toBe(65);
-  });
-});
 
 describe('orderData', () => {
   it('is a function', () => {
     expect(typeof orderData).toBe('function');
   });
 
-  it('returns the characters sorted alphabetically', () => {
-    const sortAZ = orderData(personajes,  'sortAZ', 'sortZA','name')
+  it('returns the characters sorted alphabetically A-Z', () => {
+    const sortAZ = orderData(personajes, 'name')
     expect(sortAZ.length).toBe('493');
   });
 
-  it('returns the characters sorted alphabetically', () => {
-    const sortZA = orderData(personajes,  'sortAZ', 'sortZA','name')
+  it('returns the characters sorted alphabetically Z-A', () => {
+    const sortZA = orderData(personajes, 'name')
     expect(sortZA.length).toBe('493');
   });
 });

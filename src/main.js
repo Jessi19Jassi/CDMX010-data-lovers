@@ -8,6 +8,8 @@ let boton = document.getElementById('hamburguer');
 let buttonAll = document.getElementById('showAll');
 const order = document.getElementById('order');
 
+console.log(filterByStatus(personajes, 'unknown'));
+
 
 document.addEventListener('DOMContentLoaded',()=>{
     
