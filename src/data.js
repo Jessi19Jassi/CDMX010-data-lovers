@@ -1,6 +1,5 @@
 export function filterByGender (personajes, gender) {
   if(gender === 'Female'){
-    //function filterFemale(personajes, gender) {
       const filterByFemale= personajes.filter(element=> element.gender === gender);
       return filterByFemale;
   }
@@ -11,7 +10,7 @@ export function filterByGender (personajes, gender) {
   }
 
   else if(gender === 'unknown'){
-    const filterByUnkwonG= personajes.filter(element=> element.gender===gender);
+    const filterByUnkwonG= personajes.filter(element=> element.gender === gender);
     return filterByUnkwonG;
   }
 } 
@@ -31,7 +30,25 @@ export function filterByStatus(personajes, status){
     const filterByUnkwonS= personajes.filter(element=> element.status === status);
     return filterByUnkwonS;
   }
-} 
+}
+
+//-------------------FILTER SPECIES------------------------------------
+export function filterBySpecies(personajes, species){
+  if(species === 'Alien'){
+      const filterByAlien= personajes.filter(element=> element.species === species);
+      return filterByAlien;
+  }
+
+  else if(species === 'Human'){
+    const filterByDead= personajes.filter(element=> element.species === species);
+    return filterByDead;
+  }
+
+  else if(species === 'Humanoid'){
+    const filterByHumanoid= personajes.filter(element=> element.species === species);
+    return filterByHumanoid;
+  }
+}
 
 export const orderData = (data, sortBy, sortOrder) =>{
   if(sortBy === 'name' && sortOrder === 'sortAZ'){

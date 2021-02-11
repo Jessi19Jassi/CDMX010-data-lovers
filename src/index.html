@@ -2,67 +2,106 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Rick and Morty Universe</title>
+    <title>Data Lovers</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fontello.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
-
+    <!--Obtener iconos-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
   </head>
   <body>
-    <div id="root"></div>
+
+      <div id="page-two" class="stars-two">
+          <div id="header" class="header">
+            <nav id="menu">
+                <div class="barra">
+                    <input type="checkbox"/>
+                        <label><i aria-hidden="true" class="fa fa-bars"></i></label>
+                        <ul class="principal">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="#">Sobre mi</a></li>
+                        <li><a href="#" id="filter">FILTER<i class="fa fa-chevron-down"></i></a>
+                          <ul class="menus">
+                          <li><a href="#" id="gender">GENDER</a>
+                          <ul class="sub-menu">
+                            <select name="gender" id="selectByGender" class="select-style">
+                              <option value="">Gender</option></li>
+                              <option name="female" value="fem" id="female">Female</option>
+                              <option name="male" value="mal" id="male">Male</option>
+                              <option name="unknown" value="unk" id="unknown">Unknown</option>
+                            </select>
+                          </ul>
+                        </li>
+                        <!-- <li><a href="#" id="origin">Origin</a>
+                          <ul class="sub-menu">
+                            <select name="origin" id="selectByOrigin" class="select">
+                              <option value="">Origin</option></li>
+                              <option  value="Female" id="">Female</option>
+                              <option name="gender" value="" id="filterMale">Male</option>
+                              <option name="gender" value="" id="filterUnknownGender">Unknown</option>
+                            </select>
+                          </ul>
+                        </li> -->
+
+                        <!-- <li><a href="#" id="type">TYPE</a>
+                          <ul class="sub-menu">
+                            <select name="type" id="selectByType" class="select-type">
+                              <option value="">Gender</option></li>
+                              <option  value="Female" id="fishPerson">Fish Person</option>
+                              <option name="gender" value="" id="">Male</option>
+                              <option name="gender" value="" id="">Unknown</option>
+                            </select>
+                          </ul>
+                        </li> -->
+
+                          <li><a href="#" id="filterByStatus">STATUS<i class="fa fa-chevron-down"></i></a>
+                          <ul class="sub-menu">
+                            <select name="Status" id="selectByStatus" class="select-status">
+                              <option value="">Status</option>
+                              <option value="alive" id="alive">Alive</option>
+                              <option value="dead" id="dead">Dead</option>
+                              <option value="unknownS" id="unknownS">Unknown</option>
+                            </select> 
+                          </ul>
+                        </li>
+                          <li><a href="#" id="filterBySpecies">SPECIES<i class="fa fa-chevron-down"></i></a>
+                          </li>
+                          <ul class="sub-menu"></ul>
+                          <select name="species" id="selectBySpecies" class="select-species">
+                            <option value="">Species</option>
+                            <option value="alien" id="ali">Alien</option>
+                            <option value="human" id="hum">Human</option>
+                            <option value="humanoid" id="humd">Humanoid</option>
+                          </select>
+                          </ul>
+                        </li>
+                        <li><a href="#" id="sort">ORDER</a>
+                          <ul class="menus">
+                            <select name="order" id="order" class="select-order">
+                              <option value="">SORT BY </option>
+                              <option value="sortAZ">A-Z </option>
+                              <option value="sortZA">Z-A</option>
+                            </select>
+                          </ul>
+                        </li>
+                        </ul>
+                </div>
+            </nav>             
+          </div>
+
+          <!----------IMPRIMIR DATA------------>
+          <section id="area"></section>
+          <div id="footer" class="footer">
+            <div class="iconos">
+              <a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a>
+              <a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a>
+              <a href="#"><i aria-hidden="true" class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+      </div>
     <script src="main.js" type="module"></script>
-
-      <div id="displayOne" class="stars">
-          <div>
-            <h1 class="typing"><strong>Welcome to Rick & Morty Universe</strong></h1>
-             <center> <button value="inicio" style="cursor:pointer" id="next" class="btn-siguiente">Go!</button></center>
-
-          </div>
-      </div>
-
-      <div class="stars" id="displayTwo" style="display:none">
-        <div id="area"></div>
-        <header>
-          <button id="hamburguer" style="cursor:pointer">
-            <hr> 
-            <hr>
-            <hr>
-          </button>
-          <nav id="options-menu" class="disabled-menu">
-            <ul> 
-              <select  name="gender" class="select-style" id="filGender">
-                <option value="">Gender</option>
-                <option name="female"  value="fem" id="female" >Female</option>
-                <option  name="male"  value="mal" id="male" >Male</option>
-                <option  name="unknown" value="unk" id="unknown">Unknown</option>
-              </select>          
-              <select name="Status" class="select-style" id="filStatus">
-                <option value="">Status</option>
-                <option name="alive" value="ali" id="alive">Alive</option>
-                <option name="dead" value="dea" id="dead" >Dead</option>
-                <option  name="sunknown" value="uns" id="sunknown">Unknown</option>
-              </select>          
-            </ul>
-            <select name="order" id="order" class="select-order">
-              <li><option value="">SORT BY </option></li>
-              <li><option value="sortAZ">A-Z </option></li>
-              <li><option value="sortZA"> Z-A</option></li>
-            </select>
-            <button id="showAll" onclick="">Show all</button>
-          </nav>
-        </header>
-          
-        <footer>
-          <div class='define'>
-              <p>Data Lovers 2021</p>
-          </div>
-        </footer>
-      </div>
-
-
-
   </body>
 </html>

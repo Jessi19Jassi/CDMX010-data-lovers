@@ -1,32 +1,30 @@
-import {filterByGender, filterByStatus, orderData } from './data.js';
-import rickandmorty from './data/rickandmorty/rickandmorty.js';
+import data from './data/rickandmorty/rickandmorty.js';
+import {filterByGender, filterByStatus,filterBySpecies, orderData } from './data.js';
 
-let personajes = rickandmorty.results;
-let filGender= document.getElementById('filGender');
-let filStatus= document.getElementById('filStatus');
-let boton = document.getElementById('hamburguer');
-let buttonAll = document.getElementById('showAll');
+//------DECLARACIÓN DE VARIABLES---------------
+let personajes = data.results;
+let filterGender= document.getElementById('selectByGender');
+let filterStatus= document.getElementById('selectByStatus');
+let filterSpecies =document.getElementById('selectBySpecies');
 const order = document.getElementById('order');
 
-console.log(filterByStatus(personajes, 'unknown'));
-
-
 document.addEventListener('DOMContentLoaded',()=>{
+    createCards(personajes);
     
-    filStatus.addEventListener('change',(e)=>{
+    filterStatus.addEventListener('change',(e)=>{
         const userStatus = e.target.value;
 
             console.log("Estoy escuchando el", userStatus)
     
-            if(userStatus === "ali"){
+            if(userStatus === "alive"){
                 const statusA = filterByStatus(personajes, 'Alive', userStatus);
                 createCards(statusA);
             }
-            else if(userStatus === "dea"){
+            else if(userStatus === "dead"){
                 const statusD = filterByStatus(personajes, 'Dead', userStatus);
                 createCards(statusD); 
             }
-            else if(userStatus === "uns"){
+            else if(userStatus === "unknownS"){
                 const statusU = filterByStatus(personajes, 'unknown', userStatus);
                 createCards(statusU); 
             }
@@ -34,37 +32,52 @@ document.addEventListener('DOMContentLoaded',()=>{
                 console.log('Nada');
             } 
 
- 
-         console.log("Estoy escuchando el", e.target.value)
-     })
+        console.log("Estoy escuchando el", e.target.value)
+    })
 
-     filGender.addEventListener('change',(e)=>{
+    filterGender.addEventListener('change',(e)=>{
 
-        const user = e.target.value;
-        console.log("Estoy escuchando el",user)
+        const userGender = e.target.value;
+        console.log("Estoy escuchando el",userGender)
 
-        if(user === "fem"){
-            const genderF = filterByGender(personajes, 'Female', user);
+        if(userGender === "fem"){
+            const genderF = filterByGender(personajes, 'Female', userGender);
             createCards(genderF);
         }
-        else if(user === "mal"){
-            const genderM = filterByGender(personajes, 'Male', user);
+        else if(userGender === "mal"){
+            const genderM = filterByGender(personajes, 'Male', userGender);
             createCards(genderM); 
         }
-        else if(user === "unk"){
-            const genderU = filterByGender(personajes, 'unknown', user);
+        else if(userGender === "unk"){
+            const genderU = filterByGender(personajes, 'unknown', userGender);
             createCards(genderU); 
         }
         else{
             console.log('Nada');
         }
-
-        buttonAll.addEventListener("click", ()=>{
-        createCards(personajes);
-        console.log("Regreso todos los personajes");
-        });
     })
 
+    filterSpecies.addEventListener('change',(e)=>{
+
+        const userSpecies = e.target.value;
+        console.log("Estoy escuchando el evento ", userSpecies)
+
+        if(userSpecies === "alien"){
+            const speciesA = filterBySpecies(personajes, 'Alien', userSpecies);
+            createCards(speciesA);
+        }
+        else if(userSpecies === "human"){
+            const speciesH = filterBySpecies(personajes, 'Human', userSpecies);
+            createCards(speciesH); 
+        }
+        else if(userSpecies === "humanoid"){
+            const speciesHd = filterBySpecies(personajes, 'Humanoid', userSpecies);
+            createCards(speciesHd); 
+        }
+        else{
+            console.log('Nada');
+        }
+    })
         order.addEventListener ('change', (event) => {
             const sortOrder = event.target.value;
             const orderedData = orderData(personajes, 'name', sortOrder)
@@ -73,7 +86,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 });
 
-//**Tarjetas**
+//----Imprimer CARD de personajes-----------
 const createCards = data => {
     let showAll = data.map((element) =>{
         return  `
@@ -81,40 +94,14 @@ const createCards = data => {
                 <img src="${element.image}"/> 
                 <div>
                     <h4> Name: ${element.name}</h4>
-                    <p class="status"> Status: ${element.status}</p>
-                    <p class="gender"> Gender: ${element.gender}</p>
-                    <p class="origin"> Origin: ${element.origin.name}</p>
-                    <p> Species: ${element.species}</p>
-                    <p> Type: ${element.type}</p>
+                    <p class="status">  Status: ${element.status}</p>
+                    <p class="gender">  Gender: ${element.gender}</p>
+                    <p class="origin">  Origin: ${element.origin.name}</p>
+                    <p class="species"> Species: ${element.species}</p>
+                    <p class="type">    Type: ${element.type}</p>
                 </div>
             </div> 
             `;
         }).join(" ");
-       document.getElementById("area").innerHTML = showAll;
+        document.getElementById("area").innerHTML = showAll;
 }
-
-        document.getElementById('next').addEventListener("click", function(){
-            displayOne.style.display = 'none'; //Ocultar
-            displayTwo.style.display = 'block'; //Mostrar
-        
-            createCards(personajes);
-
-
-        // **Función del menú hamburguesa**   
-
-        function showMenu(){
-             let menu = document.getElementById('options-menu');
-
-            if(menu.classList.contains("disabled-menu")){ /*Si el elemento contiene la lista*/
-                menu.classList.remove("disabled-menu"); /*quitar clase*/
-                menu.classList.add("enabled-menu"); /*agregar clase que muestra elementos*/
-            }
-
-            else{
-                menu.classList.remove("enabled-menu"); /*quitar elementos de mostrar*/
-                menu.classList.add("disabled-menu"); /*agregar clase que oculta el menu*/
-            }
-        }
-
-        boton.addEventListener("click", showMenu);
-     });
